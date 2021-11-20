@@ -66,11 +66,16 @@ function display2(valor) {
       ]}`;
     }
     html += "<pre>" + hight.join("") + "</pre>";
+    console.log(hight)
     hight = []
   }
-  console.log(dustHigh)
+
   acumulador = 0
   var div = document.createElement("div")
+  div.style.display = "flex";
+  div.style.flexDirection = "column"
+  div.style.justifyContent = "center";
+  div.style.alignContent = "center";
   div.innerHTML = html
   document.body.appendChild(div)
 }
@@ -117,5 +122,5 @@ function length (n, len=0) {
 
 
 var [dustHigh, dustLow] = sand(valor);
-// display2({dustHigh, dustLow});
+// display({dustHigh, dustLow});
 button.onclick = () => inputUser();
