@@ -54,16 +54,25 @@ function inputUser () {
 function display2(valor) {
   var n = nColumns(valor)
   var [dustHigh] = sand(valor, n)
-  var hight = new Array(n * 2) 
+  var hight = new Array(n * 2)
+  var html = []
+  var acumulador =0;
 
-  for (var i=0; i < n * 2; i++) {
-    hight[2 * n - 1 - i ] = dustHigh[dustHigh.length -1 -i];
+  for (n; n > 0; n--) {
+    for (var i=0; i < (n * 2) ; i++) {
+      acumulador++;
+      hight[2 * n - i - 1] = `${
+        dustHigh[dustHigh.length - acumulador
+      ]}`;
+    }
+    html += "<pre>" + hight.join("") + "</pre>";
+    hight = []
   }
-  hight.push("#")
-  hight.unshift("#")
-  var node = document.createTextNode(hight.join(","))
-  play.appendChild(node)
-  document.body.appendChild(play)
+  console.log(dustHigh)
+  acumulador = 0
+  var div = document.createElement("div")
+  div.innerHTML = html
+  document.body.appendChild(div)
 }
 
 
@@ -83,7 +92,7 @@ function sand (valor, n) {
   var dustHigh = new Array(len);
   var dustLow = new Array(len);
   for (var i = 0; i < len; i++) {
-    if (valor >= 0) {
+    if (valor > 0) {
       dustHigh[i] = "x";
       dustLow[i] = " ";
       valor--;
