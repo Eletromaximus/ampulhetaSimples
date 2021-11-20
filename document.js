@@ -54,12 +54,18 @@ function inputUser () {
 function display2(valor) {
   var n = nColumns(valor)
   var [dustHigh] = sand(valor, n)
-  dustHigh.push("#")
-  dustHigh.unshift("#")
-  var node = document.createTextNode(dustHigh)
+  var hight = new Array(n * 2) 
+
+  for (var i=0; i < n * 2; i++) {
+    hight[2 * n - 1 - i ] = dustHigh[dustHigh.length -1 -i];
+  }
+  hight.push("#")
+  hight.unshift("#")
+  var node = document.createTextNode(hight.join(","))
   play.appendChild(node)
   document.body.appendChild(play)
 }
+
 
 function nColumns (valor, n=0) {
   if (valor > 0) {
@@ -76,7 +82,6 @@ function sand (valor, n) {
   const len = length(n)
   var dustHigh = new Array(len);
   var dustLow = new Array(len);
-  console.log(len, valor)
   for (var i = 0; i < len; i++) {
     if (valor >= 0) {
       dustHigh[i] = "x";
