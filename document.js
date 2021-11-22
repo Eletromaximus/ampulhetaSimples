@@ -32,32 +32,53 @@ function display2(valor, valor2) {
   const total = parseInt(valor) + parseInt(valor2);
   var n = nColumns(total);
   var [dustHigh, dustLow] = sand(valor, valor2, n);
-  var hight = new Array(n * 2);
-  var low = new Array(n * 2);
   var html = [];
   var acumulador =0;
 
-
   for (var k=n; k > 0; k--) {
+    html += "<pre>#"
+    var j = n - k;
+    while (j > 0) {
+      html += " ";
+      j--;
+    };
+    j = n - k;
+    html += "#";
     for (var i=0; i < (k * 2) ; i++) {
       acumulador++;
-      hight[2 * k - i - 1] = `${
+      html += `${
         dustHigh[dustHigh.length - acumulador
       ]}`;
     }
-    html += "<pre>#" + hight.join("") + "#</pre>";
-    hight = [];
+    html += "#";
+    while (j > 0) {
+      html += " ";
+      j--;
+    }
+    html += "#</pre>"
   }
   
   acumulador = 0;
   
   for (var k=1; k <= n; k++) {
+    html += "<pre>#"
+    var j = n - k;
+    while (j > 0) {
+      html += " ";
+      j--;
+    };
+    j = n - k;
+    html += "#";
     for (var i=0; i < (k * 2) ; i++) {
-      low[i] = `${dustLow[acumulador]}`;
+      html += `${dustLow[acumulador]}`;
       acumulador++;
     }
-    html += "<pre>#" + low.join("") + "#</pre>";
-    low = [];
+    html += "#";
+    while (j > 0) {
+      html += " ";
+      j--;
+    }
+    html += "#</pre>"
   }
 
   acumulador = 0;
